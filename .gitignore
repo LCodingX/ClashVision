@@ -1,0 +1,34 @@
+# OS / IDE
+.DS_Store
+.vscode/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env*
+ 
+# Generated data
+/clock_dataset/
+/clock-jul30-3/
+/finetuning-batch-3/
+/frames/
+/clock-segments/
+/clock-validation/
+/clock-validation-synth/
+/human_annotated_yolo/
+/non-troops-dataset/
+/non-troop-dataset-3/
+/patches/
+/gui/
+/spell-validation-dataset/
+/troop-class-dataset/
+/build_dataset_live/
+/build_dataset_synth/
+/build_patch_dataset/
+/train_validation_models/
+/models/
+
+# Misc
+/debug/
