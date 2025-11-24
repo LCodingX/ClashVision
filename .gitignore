@@ -24,9 +24,6 @@ venv/
 /gui/
 /spell-validation-dataset/
 /troop-class-dataset/
-/build_dataset_live/
-/build_dataset_synth/
-/build_patch_dataset/
 /train_validation_models/
 /models/
 
