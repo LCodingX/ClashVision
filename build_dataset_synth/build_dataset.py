@@ -66,7 +66,7 @@ class Generator:
         from background01 to background27 in the Clash-Royale-Detection-Dataset.
         """
         background_index = random.randint(1, 27)
-        background_path = BASE_DIR / "segments/backgrounds" / f"background{background_index:02}.jpg"
+        background_path = BASE_DIR / "troop-segments-plus-arena/backgrounds" / f"background{background_index:02}.jpg"
         #assert background path is the proper size and exists
         assert background_path.exists(), f"Background file {background_path} does not exist."
         background_image = Image.open(background_path).convert("RGB")
@@ -77,7 +77,7 @@ class Generator:
             raise FileNotFoundError(f"Background file {background_path} does not exist.")
 
     def add_towers(self):
-        king_path = Path(BASE_DIR, "segments/king-tower/")
+        king_path = Path(BASE_DIR, "troop-segments-plus-arena/king-tower/")
         king_ally_path = random.choice(list(king_path.glob("king-tower_0_*.png")))
         king_enemy_path = random.choice(list(king_path.glob("king-tower_1_*.png")))
         self.towers.append(Tower("king-tower", king_ally_path, 0))
@@ -86,16 +86,16 @@ class Generator:
         ally_tower_name = random.choice(["dagger-duchess-tower", "cannoneer-tower", "princess-tower"])
         enemy_tower_name = random.choice(["dagger-duchess-tower", "cannoneer-tower", "princess-tower"])
         queen_path_ally_left = random.choice(list(Path(BASE_DIR, \
-            f"segments/{ally_tower_name}") \
+            f"troop-segments-plus-arena/{ally_tower_name}") \
             .glob(f"{ally_tower_name}_0_*.png")))
         queen_path_ally_right = random.choice(list(Path(BASE_DIR, \
-            f"segments/{ally_tower_name}") \
+            f"troop-segments-plus-arena/{ally_tower_name}") \
             .glob(f"{ally_tower_name}_0_*.png")))    
         queen_path_enemy_left = random.choice(list(Path(BASE_DIR, \
-            f"segments/{enemy_tower_name}")\
+            f"troop-segments-plus-arena/{enemy_tower_name}")\
             .glob(f"{enemy_tower_name}_1_*.png")))
         queen_path_enemy_right = random.choice(list(Path(BASE_DIR, \
-            f"segments/{enemy_tower_name}")\
+            f"troop-segments-plus-arena/{enemy_tower_name}")\
             .glob(f"{enemy_tower_name}_1_*.png")))
         self.towers.append(Tower(ally_tower_name+"-left", queen_path_ally_left, 0))
         self.towers.append(Tower(ally_tower_name+"-right", queen_path_ally_right, 0))
@@ -112,7 +112,7 @@ class Generator:
                 None if unit_name.startswith("goblin-drill") or unit_name.startswith("cannon-cart") else (team if unit_name in buildings else None)
             )
             troop_path = random.choice(list(Path(BASE_DIR, 
-                f"segments/{unit_name.split('-enemy')[0].split('-ally')[0]}")
+                f"troop-segments-plus-arena/{unit_name.split('-enemy')[0].split('-ally')[0]}")
                 .glob(f"{unit_name.split('-enemy')[0].split('-ally')[0]}_{team}_*.png")))
             
             # Add original unit
@@ -125,7 +125,7 @@ class Generator:
                 num_swarm_units = random.randint(1,SWARM_UPPER_BOUND)
                 for _ in range(num_swarm_units):
                     troop_path = random.choice(list(Path(BASE_DIR, 
-                        f"segments/{unit.name}")
+                        f"troop-segments-plus-arena/{unit.name}")
                         .glob(f"{unit.name}_{team}_*.png")))
                     dx = random.uniform(-1.5, 1.5)
                     dy = random.uniform(-2, 2)
@@ -189,10 +189,10 @@ class Generator:
             base.paste(sprite, (top_left_x, top_left_y), sprite)
 
             bar_level_path = random.choice(list(Path(BASE_DIR / 
-                "segments/bar-level")
+                "troop-segments-plus-arena/bar-level")
                 .glob(f"bar-level_{unit.team}_*.png")))
             bar_path = random.choice(list(Path(BASE_DIR / 
-                "segments/bar")
+                "troop-segments-plus-arena/bar")
                 .glob(f"bar_{unit.team}_*.png")))
             if not isinstance(unit, Tower) and (random.random()<0.7 or unit.name in swarm_troops) and unit.team==1:
                 sprite_np = np.array(sprite)
@@ -267,7 +267,7 @@ class Generator:
                 base.paste(bar_level_sprite, (start_x - bar_level_sprite.width, bar_level_top_y), bar_level_sprite)
 
             if not isinstance(unit, Tower) and random.random() < (0.15 if unit.name not in swarm_troops else 0.05):
-                clock_path = Path(BASE_DIR, "segments/clock/")
+                clock_path = Path(BASE_DIR, "troop-segments-plus-arena/clock/")
                 clock_path = random.choice(list(clock_path.glob(f"clock_{unit.team}_*.png")))
                 if clock_path.exists():
                     clock = Image.open(clock_path).convert("RGBA")

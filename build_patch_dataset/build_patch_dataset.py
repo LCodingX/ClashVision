@@ -76,7 +76,7 @@ def build_clock_dataset(input_dir, output_dir, clock_model_path):
                 if rel_diff < 0.3:
                     clocks_active[tuple(*results.boxes[i].xyxy.int().tolist())] = [1, 0]
 
-    print(f"\n✅ YOLO train/val dataset written to: {output_dir}")
+    print(f"\nYOLO train/val dataset written to: {output_dir}")
 
 
 if __name__ == "__main__":

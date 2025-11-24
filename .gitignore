@@ -5,6 +5,7 @@
 # Python
 __pycache__/
 *.py[cod]
+*.pt
 .venv/
 venv/
 .env*

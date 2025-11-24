@@ -120,7 +120,7 @@ class Generator:
         from background01 to background27 in the Clash-Royale-Detection-Dataset.
         """
         background_index = random.randint(1, 27)
-        background_path = BASE_DIR / "segments/backgrounds" / f"background{background_index:02}.jpg"
+        background_path = BASE_DIR / "troop-segments-plus-arena/backgrounds" / f"background{background_index:02}.jpg"
         #assert background path is the proper size and exists
         assert background_path.exists(), f"Background file {background_path} does not exist."
         background_image = Image.open(background_path).convert("RGB")
@@ -133,7 +133,7 @@ class Generator:
 
 
     def add_towers(self):
-        king_path = Path(BASE_DIR, "segments/king-tower/")
+        king_path = Path(BASE_DIR, "troop-segments-plus-arena/king-tower/")
         king_ally_path = random.choice(list(king_path.glob("king-tower_0_*.png")))
         king_enemy_path = random.choice(list(king_path.glob("king-tower_1_*.png")))
         self.towers.append(Tower("king-tower", king_ally_path, 0))
@@ -142,16 +142,16 @@ class Generator:
         ally_tower_name = random.choice(["dagger-duchess-tower", "cannoneer-tower", "princess-tower"])
         enemy_tower_name = random.choice(["dagger-duchess-tower", "cannoneer-tower", "princess-tower"])
         queen_path_ally_left = random.choice(list(Path(BASE_DIR, \
-            f"segments/{ally_tower_name}") \
+            f"troop-segments-plus-arena/{ally_tower_name}") \
             .glob(f"{ally_tower_name}_0_*.png")))
         queen_path_ally_right = random.choice(list(Path(BASE_DIR, \
-            f"segments/{ally_tower_name}") \
+            f"troop-segments-plus-arena/{ally_tower_name}") \
             .glob(f"{ally_tower_name}_0_*.png")))    
         queen_path_enemy_left = random.choice(list(Path(BASE_DIR, \
-            f"segments/{enemy_tower_name}")\
+            f"troop-segments-plus-arena/{enemy_tower_name}")\
             .glob(f"{enemy_tower_name}_1_*.png")))
         queen_path_enemy_right = random.choice(list(Path(BASE_DIR, \
-            f"segments/{enemy_tower_name}")\
+            f"troop-segments-plus-arena/{enemy_tower_name}")\
             .glob(f"{enemy_tower_name}_1_*.png")))
         self.towers.append(Tower(ally_tower_name+"-left", queen_path_ally_left, 0))
         self.towers.append(Tower(ally_tower_name+"-right", queen_path_ally_right, 0))
@@ -165,7 +165,7 @@ class Generator:
             available_fixed = fixed_spells
             if available_fixed:
                 spell_name = random.choice(available_fixed)
-                folder = BASE_DIR / "segment-log" / spell_name
+                folder = BASE_DIR / "non-troop-segments" / spell_name
                 png_files = list(folder.glob("*.png"))
                 team = 1
                 troop_path = random.choice(png_files)
@@ -182,7 +182,7 @@ class Generator:
         if available_ground:
             selected_ground = random.sample(available_ground, 4)
             for spell_name in selected_ground:
-                folder = BASE_DIR/f"segment-log/{spell_name}"
+                folder = BASE_DIR / "non-troop-segments" / spell_name
                 png_files = list(folder.glob("*.png"))
                 team = 1
                 
@@ -207,7 +207,7 @@ class Generator:
         if available_air:
             selected_air = random.sample(available_air, min(2, len(available_air)))
             for spell_name in selected_air:
-                folder = BASE_DIR/f"segment-log/{spell_name}"
+                folder = BASE_DIR / "non-troop-segments" / spell_name
                 png_files = list(folder.glob("*.png"))
                 team = 1
                 xy = get_random_valid_xy(self.units, 2, None)
@@ -257,7 +257,7 @@ class Generator:
         #sometimes add clone, earthquake, graveyard, poison, freeze to the ground with 5% chance each
         
         if random.random() < 0.05:
-            clone_folder = BASE_DIR / "segment" / "clone"
+            clone_folder = BASE_DIR / "non-troop-segments" / "clone"
             if clone_folder.exists():
                 clone_files = list(clone_folder.glob("clone_0_*.png"))
                 if clone_files:
@@ -272,7 +272,7 @@ class Generator:
                         team=0
                     ))
         if random.random() < 0.05:
-            freeze_folder = BASE_DIR / "segment" / "freeze"
+            freeze_folder = BASE_DIR / "non-troop-segments" / "freeze"
             if freeze_folder.exists():
                 freeze_files = list(freeze_folder.glob("freeze_0_*.png"))
                 if freeze_files:
@@ -287,7 +287,7 @@ class Generator:
                         team=0
                     ))
         if random.random() < 0.05:
-                earthquake_folder = BASE_DIR / "segment" / "earthquake"
+                earthquake_folder = BASE_DIR / "non-troop-segments" / "earthquake"
                 if earthquake_folder.exists():
                     earthquake_files = list(earthquake_folder.glob("earthquake_0_*.png"))
                     if earthquake_files:
@@ -302,7 +302,7 @@ class Generator:
                             team=0
                         ))
         if random.random() < 0.05:
-            graveyard_folder = BASE_DIR / "segment" / "graveyard"
+            graveyard_folder = BASE_DIR / "non-troop-segments" / "graveyard"
             if graveyard_folder.exists():
                 graveyard_files = list(graveyard_folder.glob("graveyard_0_*.png"))
                 if graveyard_files:
@@ -317,7 +317,7 @@ class Generator:
                         team=0
                     ))
         if random.random() < 0.05:
-            poison_folder = BASE_DIR / "segment" / "poison"
+            poison_folder = BASE_DIR / "non-troop-segments" / "poison"
             if poison_folder.exists():
                 poison_files = list(poison_folder.glob("poison_0_*.png"))
                 if poison_files:
