@@ -25,3 +25,13 @@ Tools and datasets for training Clash Royale computer vision models. The repo mi
 - Live pipelines assume videos/frames under `BASE_DIR` with outputs written to YOLO-style `images/` + `labels/` trees.
 
 For folder-level details, see `build_dataset_live/README.md` and `build_dataset_synth/README.md`.
+
+Screenshots showcasing finetuned YOLO model performance on non troops (spells, clocks, evolution symbols). All of these are detections on new images not in the training or validation set:
+<img width="462" height="718" alt="image" src="https://github.com/user-attachments/assets/341efe2b-4cd7-4368-8bc3-7fe247722ec1" />
+<img width="455" height="721" alt="image" src="https://github.com/user-attachments/assets/2bbe4f38-e0e2-485c-be45-aab317ceb0d7" />
+<img width="454" height="717" alt="image" src="https://github.com/user-attachments/assets/6d9afa31-e835-469d-8f23-d83dc93885eb" />
+<img width="454" height="717" alt="image" src="https://github.com/user-attachments/assets/af87afa9-77b1-4728-a7e9-9749f6bd7ba8" />
+<img width="451" height="716" alt="image" src="https://github.com/user-attachments/assets/c95cb969-37a3-4580-b251-5642ff45fcc3" />
+Clock validater(resnet-50) decides if a clock is 0 or 1 depending on whether the clock is within the first 1/4 of its progression cycle
+Screenshots showcasing finetuned YOLO model performance on troops (units, buildings): 
+
